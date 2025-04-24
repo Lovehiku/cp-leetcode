@@ -1,17 +1,15 @@
+# The guess API is already defined for you.
+# def guess(num: int) -> int:
+
 class Solution:
-    def guessNumber(self, n: int) -> int:
-        low = 1
-        high = n
-        
-        while low <= high:
-            mid = (low + high) // 2
+    def guessNumber(self, n):
+        left, right = 1, n
+        while left <= right:
+            mid = (left + right) // 2
             result = guess(mid)
-            
             if result == 0:
-                return mid  
-            elif result < 0:
-                high = mid - 1 
-            else:
-                low = mid + 1  
-        
-        return -1 
+                return mid
+            elif result < 0:  # picked number is lower
+                right = mid - 1
+            else:  # picked number is higher
+                left = mid + 1

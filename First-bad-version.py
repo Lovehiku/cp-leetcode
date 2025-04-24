@@ -2,15 +2,12 @@
 # def isBadVersion(version: int) -> bool:
 
 class Solution:
-    def firstBadVersion(self, n: int) -> int:
-        low = 1
-        high = n
-        
-        while low < high:
-            mid = (low + high) // 2
+    def firstBadVersion(self, n):
+        left, right = 1, n
+        while left < right:
+            mid = (left + right) // 2
             if isBadVersion(mid):
-                high = mid  # look to the left
+                right = mid  # mid might be the first bad
             else:
-                low = mid + 1  # look to the right
-                
-        return low
+                left = mid + 1  # first bad must be after mid
+        return left  # or right, since left == right
